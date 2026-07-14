@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "busbar-cci-keychain"
+version = "0.1.0"
+description = "CumulusCI keychain and org-config extensions for zero-static-credential CI: proxy-injected sessions (Busbar/nono) and locked-down Dev Hub packaging accounts."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "Busbar" }]
+# cumulusci is provided by the environment (installed alongside); requests is the
+# only direct runtime dependency.
+dependencies = ["requests"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/composable-delivery/busbar-cci-keychain"
+Issues = "https://github.com/composable-delivery/busbar-cci-keychain/issues"
+
+[tool.setuptools]
+packages = ["busbar_cci_keychain"]
