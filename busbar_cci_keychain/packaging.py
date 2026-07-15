@@ -115,6 +115,16 @@ class ImportPackagingOrg(BaseTask):
         org_name: str = Field(
             ..., description="Name to register this org under in CumulusCI's keychain."
         )
+        config_file: str = Field(
+            "config/project-scratch-def.json",
+            description=(
+                "Scratch-org-definition JSON to read org-shape settings "
+                "(edition/features/language/etc.) from. create_package_version "
+                "requires org_config.config_file even when the target org is a "
+                "persistent Dev Hub, not an actual scratch org -- it never "
+                "creates a scratch from this file, only reads shape settings."
+            ),
+        )
 
     parsed_options: Options
 
@@ -124,6 +134,7 @@ class ImportPackagingOrg(BaseTask):
                 "username": self.parsed_options.username_or_alias,
                 "sfdx": True,
                 _MARKER: True,
+                "config_file": self.parsed_options.config_file,
             },
             self.parsed_options.org_name,
             self.project_config.keychain,
